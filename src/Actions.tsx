@@ -1,4 +1,4 @@
-import { IAction, IEpisodeProps, IEpisode, IState } from './interfaces';
+import { IAction, IEpisode, IState } from './interfaces';
 
 export const fetchDataAction = async (dispatch: any) => {
   const URL =

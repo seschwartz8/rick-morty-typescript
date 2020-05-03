@@ -12,9 +12,9 @@ const EpisodesList = (props: any): JSX.Element => {
         return (
           <section key={episode.id} className='episode-box'>
             {/* <img
-          src={episode.image.medium}
-          alt={`Rick and Morty ${episode.name}`}
-        /> */}
+              src={episode.image.medium}
+              alt={`Rick and Morty ${episode.name}`}
+            /> */}
             <div>{episode.name}</div>
             <section
               style={{ display: 'flex', justifyContent: 'space-between' }}

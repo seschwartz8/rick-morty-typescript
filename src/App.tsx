@@ -9,7 +9,13 @@ const App = (props: any): JSX.Element => {
     <>
       <header className='header'>
         <h1>Rick and Morty</h1>
-        <div>
+        <div
+          style={{
+            width: '20vw',
+            display: 'flex',
+            justifyContent: 'space-around',
+          }}
+        >
           <Link to='/'>Home</Link>
           <Link to='/favorites'>Favorites(s): {state.favorites.length}</Link>
         </div>

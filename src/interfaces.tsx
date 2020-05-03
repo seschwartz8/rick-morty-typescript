@@ -5,8 +5,10 @@ export interface IState {
 
 export interface IAction {
   type: string;
-  payload?: any;
+  payload?: Array<IEpisode> | any;
 }
+
+export type Dispatch = React.Dispatch<IAction>;
 
 export interface IEpisode {
   id: number;
@@ -26,7 +28,11 @@ export interface IEpisode {
 
 export interface IEpisodeProps {
   episodes: Array<IEpisode>;
-  store: { state: IState; dispatch: any };
-  toggleFavAction: (state: IState, dispatch: any, episode: IEpisode) => IAction;
+  store: { state: IState; dispatch: Dispatch };
+  toggleFavAction: (
+    state: IState,
+    dispatch: Dispatch,
+    episode: IEpisode
+  ) => IAction;
   favorites: Array<IEpisode>;
 }
