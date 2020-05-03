@@ -1,6 +1,8 @@
 import React from 'react';
 import { Store } from './Store';
 import { IAction, IEpisode } from './interfaces';
+// Lazy loading of components
+const EpisodesList = React.lazy(() => import('./EpisodesList'));
 
 const App = (): JSX.Element => {
   const { state, dispatch } = React.useContext(Store);
@@ -33,31 +35,21 @@ const App = (): JSX.Element => {
     return dispatch(dispatchObj);
   };
 
+  const props = {
+    episodes: state.episodes,
+    toggleFavAction,
+    favorites: state.favorites,
+  };
+
   return (
     <>
       <h1 className='header'>Rick and Morty</h1>
-      {console.log(state.favorites)}
-      <section className='episode-layout'>
-        {state.episodes.map((episode: IEpisode) => {
-          return (
-            <section key={episode.id} className='episode-box'>
-              {/* <img
-                src={episode.image.medium}
-                alt={`Rick and Morty ${episode.name}`}
-              /> */}
-              <div>{episode.name}</div>
-              <section>
-                <div>
-                  Season: {episode.season} Number: {episode.number}
-                </div>
-                <button type='button' onClick={() => toggleFavAction(episode)}>
-                  Fav
-                </button>
-              </section>
-            </section>
-          );
-        })}
-      </section>
+
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <section className='episode-layout'>
+          <EpisodesList {...props} />
+        </section>
+      </React.Suspense>
     </>
   );
 };
