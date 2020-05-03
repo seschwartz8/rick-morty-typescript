@@ -1,21 +1,6 @@
 import React from 'react';
 import { Store } from './Store';
-
-interface IEpisode {
-  id: number;
-  url: string;
-  name: string;
-  season: number;
-  number: number;
-  airdate: string;
-  airstamp: string;
-  airtime: string;
-  image: {
-    medium: string;
-    original: string;
-  };
-  summary: string;
-}
+import { IAction, IEpisode } from './interfaces';
 
 const App = (): JSX.Element => {
   const { state, dispatch } = React.useContext(Store);
@@ -36,9 +21,22 @@ const App = (): JSX.Element => {
     });
   };
 
+  const toggleFavAction = (episode: IEpisode): IAction => {
+    const episodeInFavorites = state.favorites.includes(episode);
+    let dispatchObj = { type: 'ADD_FAV', payload: episode };
+    if (episodeInFavorites) {
+      const favoritesWithoutEpisode = state.favorites.filter(
+        (fav: IEpisode) => fav.id !== episode.id
+      );
+      dispatchObj = { type: 'REMOVE_FAV', payload: favoritesWithoutEpisode };
+    }
+    return dispatch(dispatchObj);
+  };
+
   return (
     <>
       <h1 className='header'>Rick and Morty</h1>
+      {console.log(state.favorites)}
       <section className='episode-layout'>
         {state.episodes.map((episode: IEpisode) => {
           return (
@@ -49,7 +47,12 @@ const App = (): JSX.Element => {
               /> */}
               <div>{episode.name}</div>
               <section>
-                Season: {episode.season} Number: {episode.number}
+                <div>
+                  Season: {episode.season} Number: {episode.number}
+                </div>
+                <button type='button' onClick={() => toggleFavAction(episode)}>
+                  Fav
+                </button>
               </section>
             </section>
           );
