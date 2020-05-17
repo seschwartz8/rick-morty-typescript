@@ -10,6 +10,8 @@ export interface IAction {
 
 export type Dispatch = React.Dispatch<IAction>;
 
+export interface IHeaderProps {}
+
 export interface IEpisode {
   id: number;
   url: string;
