@@ -1,10 +1,10 @@
 import React from 'react';
-import { IEpisode } from './interfaces';
+import { IEpisode, IEpisodeProps } from './interfaces';
+import { Store } from './Store';
 
-const EpisodesList = (props: any): JSX.Element => {
-  const { episodes, toggleFavAction, favorites, store } = props;
-
-  const { state, dispatch } = store;
+const EpisodesList: React.FC<IEpisodeProps> = (props): JSX.Element => {
+  const { episodes, toggleFavAction, favorites } = props;
+  const { state, dispatch } = React.useContext(Store);
 
   return (
     <>

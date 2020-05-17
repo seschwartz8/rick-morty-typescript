@@ -7,11 +7,10 @@ import { IEpisodeProps } from './interfaces';
 const EpisodesList = React.lazy(() => import('./EpisodesList'));
 
 export default function Favorites(): JSX.Element {
-  const { state, dispatch } = React.useContext(Store);
+  const { state } = React.useContext(Store);
 
   const props: IEpisodeProps = {
     episodes: state.favorites,
-    store: { state, dispatch },
     toggleFavAction,
     favorites: state.favorites,
   };

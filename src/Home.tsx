@@ -14,7 +14,6 @@ export default function Home() {
 
   const props: IEpisodeProps = {
     episodes: state.episodes,
-    store: { state, dispatch },
     toggleFavAction,
     favorites: state.favorites,
   };

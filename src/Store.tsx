@@ -25,7 +25,7 @@ export const StoreProvider = ({
   children,
 }: JSX.ElementChildrenAttribute): JSX.Element => {
   const [state, dispatch] = React.useReducer(reducer, initialState);
-  // Anything inside will be wrapped in the provider, passing it the state value
+  // Anything inside will be wrapped in the provider, passing it the state value and dispatch
   return (
     <Store.Provider value={{ state, dispatch }}>{children}</Store.Provider>
   );

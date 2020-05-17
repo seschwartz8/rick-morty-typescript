@@ -1,6 +1,6 @@
 import { IAction, IEpisode, IState } from './interfaces';
 
-export const fetchDataAction = async (dispatch: any) => {
+export const fetchDataAction = async (dispatch: React.Dispatch<IAction>) => {
   const URL =
     'https://api.tvmaze.com/singlesearch/shows?q=rick-&-morty&embed=episodes';
   const data = await fetch(URL);
@@ -14,7 +14,7 @@ export const fetchDataAction = async (dispatch: any) => {
 
 export const toggleFavAction = (
   state: IState,
-  dispatch: any,
+  dispatch: React.Dispatch<IAction> | any,
   episode: IEpisode | any
 ): IAction => {
   const episodeInFavorites = state.favorites.includes(episode);

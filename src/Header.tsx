@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Store } from './Store';
-import { IHeaderProps } from './interfaces';
 
-const Header: React.FC<IHeaderProps> = () => {
+const Header: React.FC = () => {
   const { state } = React.useContext(Store);
 
   return (
